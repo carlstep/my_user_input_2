@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'User Input',
       home: BillProcess(),
     );
@@ -43,6 +43,7 @@ class _BillProcessState extends State<BillProcess> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextField(
+                // TODO - set a default value to 0
                 onChanged: (value) {
                   setState(() {
                     billAmount = double.parse(value);
@@ -60,11 +61,20 @@ class _BillProcessState extends State<BillProcess> {
                 keyboardType:
                     const TextInputType.numberWithOptions(decimal: true),
                 controller: myController,
+                decoration: InputDecoration(
+                  suffix: IconButton(
+                    onPressed: () {
+                      myController.clear();
+                    },
+                    icon: Icon(Icons.clear),
+                  ),
+                ),
               ),
               const SizedBox(
                 height: 20,
               ),
-              Text('$billAmountConverted $billCurrencyConverted'),
+              Text(
+                  '${billAmountConverted.toStringAsFixed(2)} $billCurrencyConverted'),
               const SizedBox(
                 height: 20,
               ),
