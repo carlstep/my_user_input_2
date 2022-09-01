@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_user_input_2/sections/bill_amount_process.dart';
+import 'package:my_user_input_2/pages/cash_transaction.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'User Input',
-      home: BillProcess(),
+      home: CashTransaction(),
     );
   }
 }
