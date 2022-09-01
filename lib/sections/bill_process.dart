@@ -14,6 +14,18 @@ class _BillProcessState extends State<BillProcess> {
   String billCurrency = 'USD';
   double billAmountConverted = 0;
   String billCurrencyConverted = '';
+  String billCurrencyFlag = '';
+  String billCurrencyFlagConverted = '';
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +51,15 @@ class _BillProcessState extends State<BillProcess> {
                 padding: const EdgeInsets.all(0.0),
                 child: SizedBox(
                   height: 80,
-                  width: 220,
+                  width: 240,
                   child: TextField(
                     textAlign: TextAlign.start,
                     textAlignVertical: TextAlignVertical.center,
                     style: GoogleFonts.poppins(
-                        fontSize: 28, fontWeight: FontWeight.w400),
+                      fontSize: 28,
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 1.2,
+                    ),
                     // TODO - set a default value to 0
                     onChanged: (value) {
                       setState(() {
@@ -53,13 +68,22 @@ class _BillProcessState extends State<BillProcess> {
                           billCurrency = 'KHR';
                           billAmountConverted = billAmount / 4000;
                           billCurrencyConverted = 'USD';
+                          billCurrencyFlag = '🇰🇭';
+                          if (billCurrencyConverted == 'USD') {
+                            billCurrencyFlagConverted = '🇺🇸';
+                          }
                         } else {
                           billCurrency = 'USD';
                           billAmountConverted = billAmount * 4000;
                           billCurrencyConverted = 'KHR';
+                          billCurrencyFlag = '🇺🇸';
+                          if (billCurrencyConverted == 'KHR') {
+                            billCurrencyFlagConverted = '🇰🇭';
+                          }
                         }
                       });
                     },
+                    maxLength: 7,
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
                     controller: myController,
@@ -76,6 +100,7 @@ class _BillProcessState extends State<BillProcess> {
                           width: 1,
                         ),
                       ),
+                      hintText: billAmount.toString(),
                       labelText: 'enter bill amount',
                       labelStyle: GoogleFonts.poppins(
                         fontSize: 14,
@@ -86,12 +111,7 @@ class _BillProcessState extends State<BillProcess> {
                           Radius.circular(15),
                         ),
                       ),
-                      suffix: IconButton(
-                        onPressed: () {
-                          myController.clear();
-                        },
-                        icon: const Icon(Icons.clear),
-                      ),
+                      prefixText: billCurrencyFlag,
                     ),
                   ),
                 ),
@@ -109,15 +129,15 @@ class _BillProcessState extends State<BillProcess> {
                     color: Colors.grey[300],
                     child: Center(
                       child: Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment.center,
                         child: Padding(
                           padding: const EdgeInsets.all(4),
                           child: Text(
-                            '${billAmountConverted.toStringAsFixed(2)} $billCurrencyConverted',
+                            '${billAmountConverted.toStringAsFixed(2)} $billCurrencyFlagConverted',
                             style: GoogleFonts.poppins(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
-                              letterSpacing: 1.2,
+                              letterSpacing: 1.1,
                             ),
                           ),
                         ),
@@ -128,8 +148,26 @@ class _BillProcessState extends State<BillProcess> {
               ),
             ),
             Positioned(
-                bottom: 5,
-                child: Text('This is the bill currency - $billCurrency')),
+              right: -8,
+              top: -8,
+              child: OutlinedButton(
+                style: OutlinedButton.styleFrom(
+                  minimumSize: Size(40, 40),
+                  primary: Colors.red,
+                  //onPrimary: Colors.white,
+                  padding: EdgeInsets.all(2),
+                  side: BorderSide.none,
+                ),
+                onPressed: () {
+                  myController.clear();
+                },
+                child: const Icon(
+                  Icons.restart_alt_outlined,
+                  size: 40,
+                ),
+              ),
+            ),
+            Positioned(bottom: 5, child: Text('Bill Currency - $billCurrency')),
           ],
         ),
       ),
