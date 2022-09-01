@@ -46,7 +46,7 @@ class _BillProcessState extends State<BillProcess> {
               children: [
                 Container(
                   width: 340,
-                  height: 120,
+                  height: 140,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.amberAccent,
@@ -62,7 +62,7 @@ class _BillProcessState extends State<BillProcess> {
                             padding: const EdgeInsets.all(0.0),
                             child: SizedBox(
                               height: 80,
-                              width: 280,
+                              width: 220,
                               child: TextField(
                                 textAlign: TextAlign.start,
                                 textAlignVertical: TextAlignVertical.center,
