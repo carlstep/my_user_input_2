@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class BillProcess extends StatefulWidget {
@@ -56,11 +57,10 @@ class _BillProcessState extends State<BillProcess> {
                     textAlign: TextAlign.start,
                     textAlignVertical: TextAlignVertical.center,
                     style: GoogleFonts.poppins(
-                      fontSize: 28,
+                      fontSize: 24,
                       fontWeight: FontWeight.w400,
-                      letterSpacing: 1.2,
+                      letterSpacing: 1.1,
                     ),
-                    // TODO - set a default value to 0
                     onChanged: (value) {
                       setState(() {
                         billAmount = double.parse(value);
@@ -79,11 +79,12 @@ class _BillProcessState extends State<BillProcess> {
                           billCurrencyFlag = '🇺🇸';
                           if (billCurrencyConverted == 'KHR') {
                             billCurrencyFlagConverted = '🇰🇭';
-                          }
+                          } // TODO - use digit grouping for large numbers
                         }
                       });
                     },
-                    maxLength: 7,
+                    inputFormatters: [LengthLimitingTextInputFormatter(7)],
+                    //maxLength: 7,
                     keyboardType:
                         const TextInputType.numberWithOptions(decimal: true),
                     controller: myController,
@@ -100,45 +101,71 @@ class _BillProcessState extends State<BillProcess> {
                           width: 1,
                         ),
                       ),
-                      hintText: billAmount.toString(),
-                      labelText: 'enter bill amount',
-                      labelStyle: GoogleFonts.poppins(
-                        fontSize: 14,
+                      hintText: 'enter amount',
+                      hintStyle: GoogleFonts.poppins(
+                        fontSize: 18,
                         fontWeight: FontWeight.w400,
+                      ),
+                      labelText: 'bill amount',
+                      labelStyle: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
+                        color: Colors.grey[700],
                       ),
                       border: const OutlineInputBorder(
                         borderRadius: BorderRadius.all(
-                          Radius.circular(15),
+                          Radius.circular(10),
                         ),
                       ),
-                      prefixText: billCurrencyFlag,
+                      suffixText: billCurrencyFlag,
                     ),
                   ),
                 ),
               ),
             ),
             Positioned(
-              top: 55,
+              bottom: 10,
               right: 5,
               child: Padding(
                 padding: EdgeInsets.zero,
                 child: SizedBox(
                   //height: 50,
-                  width: 160,
+                  width: 200,
                   child: Card(
-                    color: Colors.grey[300],
+                    elevation: 5,
+                    color: Colors.grey[200],
+                    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Center(
                       child: Align(
                         alignment: Alignment.center,
                         child: Padding(
-                          padding: const EdgeInsets.all(4),
-                          child: Text(
-                            '${billAmountConverted.toStringAsFixed(2)} $billCurrencyFlagConverted',
-                            style: GoogleFonts.poppins(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: 1.1,
-                            ),
+                          padding: const EdgeInsets.fromLTRB(10, 1, 10, 1),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${billAmountConverted.toStringAsFixed(2)} ',
+                                style: GoogleFonts.poppins(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 1.1,
+                                ),
+                              ),
+                              Text(
+                                billCurrencyFlagConverted,
+                                style: GoogleFonts.poppins(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: 1.1,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
@@ -152,10 +179,10 @@ class _BillProcessState extends State<BillProcess> {
               top: -8,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  minimumSize: Size(40, 40),
+                  minimumSize: const Size(40, 40),
                   primary: Colors.red,
                   //onPrimary: Colors.white,
-                  padding: EdgeInsets.all(2),
+                  padding: const EdgeInsets.all(2),
                   side: BorderSide.none,
                 ),
                 onPressed: () {
@@ -167,7 +194,10 @@ class _BillProcessState extends State<BillProcess> {
                 ),
               ),
             ),
-            Positioned(bottom: 5, child: Text('Bill Currency - $billCurrency')),
+            Positioned(
+              bottom: 5,
+              child: Text('Bill Currency - $billCurrency'),
+            ),
           ],
         ),
       ),
