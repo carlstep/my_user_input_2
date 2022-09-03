@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class PaymentProcess extends StatelessWidget {
+class PaymentProcess extends StatefulWidget {
   const PaymentProcess({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<PaymentProcess> createState() => _PaymentProcessState();
+}
+
+class _PaymentProcessState extends State<PaymentProcess> {
   @override
   Widget build(BuildContext context) {
     return Container(

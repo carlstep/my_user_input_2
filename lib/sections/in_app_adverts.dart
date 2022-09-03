@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class AdContainer extends StatelessWidget {
+class AdContainer extends StatefulWidget {
   const AdContainer({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<AdContainer> createState() => _AdContainerState();
+}
+
+class _AdContainerState extends State<AdContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(

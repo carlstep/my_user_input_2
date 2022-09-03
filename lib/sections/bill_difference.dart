@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
-class BillDiff extends StatelessWidget {
+class BillDiff extends StatefulWidget {
   const BillDiff({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<BillDiff> createState() => _BillDiffState();
+}
+
+class _BillDiffState extends State<BillDiff> {
   @override
   Widget build(BuildContext context) {
     return Container(
