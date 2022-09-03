@@ -36,13 +36,13 @@ class _BillProcessState extends State<BillProcess> {
   Container billAmountInput() {
     return Container(
       width: 340,
-      height: 140,
+      height: 120,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.amberAccent,
+        color: Colors.amber[100],
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(0.0),
         child: Stack(
           children: [
             Positioned(
@@ -175,8 +175,8 @@ class _BillProcessState extends State<BillProcess> {
               ),
             ),
             Positioned(
-              right: -8,
-              top: -8,
+              right: 0,
+              top: 0,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size(40, 40),
