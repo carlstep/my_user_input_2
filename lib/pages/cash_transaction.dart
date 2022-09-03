@@ -21,26 +21,24 @@ class CashTransaction extends StatelessWidget {
         ),
         body: Center(
           child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  BillProcess(), // handles the bill amount from user
-                  SizedBox(
-                    height: 20,
-                  ),
-                  BillDiff(), // calculates the bill vs payment difference
-                  SizedBox(
-                    height: 20,
-                  ),
-                  PaymentProcess(), // handles the payment amount from user
-                  SizedBox(
-                    height: 40,
-                  ),
-                  AdContainer(), // for in app advertising
-                ],
-              ),
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                BillProcess(), // handles the bill amount from user
+                SizedBox(
+                  height: 20,
+                ),
+                BillDiff(), // calculates the bill vs payment difference
+                SizedBox(
+                  height: 20,
+                ),
+                PaymentProcess(), // handles the payment amount from user
+                SizedBox(
+                  height: 40,
+                ),
+                AdContainer(), // for in app advertising
+              ],
             ),
           ),
         ),

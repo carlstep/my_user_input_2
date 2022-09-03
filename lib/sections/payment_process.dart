@@ -24,11 +24,11 @@ class _PaymentProcessState extends State<PaymentProcess> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              TextField(),
+              Text('Usd'),
               SizedBox(
                 width: 20,
               ),
-              TextField(),
+              Text('khr'),
             ],
           ),
           const SizedBox(
