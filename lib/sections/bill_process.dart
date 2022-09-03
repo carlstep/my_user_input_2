@@ -53,73 +53,7 @@ class _BillProcessState extends State<BillProcess> {
                 child: SizedBox(
                   height: 80,
                   width: 240,
-                  child: TextField(
-                    textAlign: TextAlign.start,
-                    textAlignVertical: TextAlignVertical.center,
-                    style: GoogleFonts.poppins(
-                      fontSize: 24,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 1.1,
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        billAmount = double.parse(value);
-                        if (billAmount >= 1000) {
-                          billCurrency = 'KHR';
-                          billAmountConverted = billAmount / 4000;
-                          billCurrencyConverted = 'USD';
-                          billCurrencyFlag = '🇰🇭';
-                          if (billCurrencyConverted == 'USD') {
-                            billCurrencyFlagConverted = '🇺🇸';
-                          }
-                        } else {
-                          billCurrency = 'USD';
-                          billAmountConverted = billAmount * 4000;
-                          billCurrencyConverted = 'KHR';
-                          billCurrencyFlag = '🇺🇸';
-                          if (billCurrencyConverted == 'KHR') {
-                            billCurrencyFlagConverted = '🇰🇭';
-                          } // TODO - use digit grouping for large numbers
-                        }
-                      });
-                    },
-                    inputFormatters: [LengthLimitingTextInputFormatter(7)],
-                    //maxLength: 7,
-                    keyboardType:
-                        const TextInputType.numberWithOptions(decimal: true),
-                    controller: myController,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-                      filled: true,
-                      fillColor: Colors.white,
-                      enabledBorder: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        borderSide: BorderSide(
-                          color: Colors.blue,
-                          width: 1,
-                        ),
-                      ),
-                      hintText: 'enter amount',
-                      hintStyle: GoogleFonts.poppins(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                      ),
-                      labelText: 'bill amount',
-                      labelStyle: GoogleFonts.poppins(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w400,
-                        color: Colors.grey[700],
-                      ),
-                      border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                      ),
-                      suffixText: billCurrencyFlag,
-                    ),
-                  ),
+                  child: billAmountProcess(),
                 ),
               ),
             ),
@@ -131,46 +65,7 @@ class _BillProcessState extends State<BillProcess> {
                 child: SizedBox(
                   //height: 50,
                   width: 200,
-                  child: Card(
-                    elevation: 5,
-                    color: Colors.grey[200],
-                    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                        color: Colors.grey,
-                        width: 1,
-                      ),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 1, 10, 1),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                '${billAmountConverted.toStringAsFixed(2)} ',
-                                style: GoogleFonts.poppins(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 1.1,
-                                ),
-                              ),
-                              Text(
-                                billCurrencyFlagConverted,
-                                style: GoogleFonts.poppins(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: 1.1,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  child: billAmountConvertedProcess(),
                 ),
               ),
             ),
@@ -200,6 +95,118 @@ class _BillProcessState extends State<BillProcess> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Card billAmountConvertedProcess() {
+    return Card(
+      elevation: 5,
+      color: Colors.grey[200],
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: Colors.grey,
+          width: 1,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Center(
+        child: Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(10, 1, 10, 1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  '${billAmountConverted.toStringAsFixed(2)} ',
+                  style: GoogleFonts.poppins(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 1.1,
+                  ),
+                ),
+                Text(
+                  billCurrencyFlagConverted,
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 1.1,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  TextField billAmountProcess() {
+    return TextField(
+      textAlign: TextAlign.start,
+      textAlignVertical: TextAlignVertical.center,
+      style: GoogleFonts.poppins(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        letterSpacing: 1.1,
+      ),
+      onChanged: (value) {
+        setState(() {
+          billAmount = double.parse(value);
+          if (billAmount >= 1000) {
+            billCurrency = 'KHR';
+            billAmountConverted = billAmount / 4000;
+            billCurrencyConverted = 'USD';
+            billCurrencyFlag = '🇰🇭';
+            if (billCurrencyConverted == 'USD') {
+              billCurrencyFlagConverted = '🇺🇸';
+            }
+          } else {
+            billCurrency = 'USD';
+            billAmountConverted = billAmount * 4000;
+            billCurrencyConverted = 'KHR';
+            billCurrencyFlag = '🇺🇸';
+            if (billCurrencyConverted == 'KHR') {
+              billCurrencyFlagConverted = '🇰🇭';
+            } // TODO - use digit grouping for large numbers
+          }
+        });
+      },
+      inputFormatters: [LengthLimitingTextInputFormatter(7)],
+      //maxLength: 7,
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      controller: myController,
+      decoration: InputDecoration(
+        contentPadding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+        filled: true,
+        fillColor: Colors.white,
+        enabledBorder: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+          borderSide: BorderSide(
+            color: Colors.blue,
+            width: 1,
+          ),
+        ),
+        hintText: 'enter amount',
+        hintStyle: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w400,
+        ),
+        labelText: 'bill amount',
+        labelStyle: GoogleFonts.poppins(
+          fontSize: 18,
+          fontWeight: FontWeight.w400,
+          color: Colors.grey[700],
+        ),
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(
+            Radius.circular(10),
+          ),
+        ),
+        suffixText: billCurrencyFlag,
       ),
     );
   }

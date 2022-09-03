@@ -13,13 +13,13 @@ class _BillDiffState extends State<BillDiff> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Section - Bill Diff'),
       width: 340,
       height: 80,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Colors.red[100],
       ),
+      child: const Text('Section - Bill Diff'),
     );
   }
 }

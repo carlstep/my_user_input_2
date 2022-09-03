@@ -23,20 +23,20 @@ class _PaymentProcessState extends State<PaymentProcess> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('usd'),
+            children: const [
+              TextField(),
               SizedBox(
                 width: 20,
               ),
-              Text('khr'),
+              TextField(),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Column(
-            children: [
-              Text('Section - Payment - Khr slider'),
+            children: const [
+              Text('slider 1'),
               SizedBox(
                 height: 20,
               ),

@@ -13,13 +13,13 @@ class _AdContainerState extends State<AdContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('Section - IAA'),
       width: 340,
-      height: 160,
+      height: 100,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: Colors.green[100],
       ),
+      child: const Text('Section - IAA'),
     );
   }
 }
