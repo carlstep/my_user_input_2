@@ -63,7 +63,7 @@ class _BillProcessState extends State<BillProcess> {
               child: Padding(
                 padding: EdgeInsets.zero,
                 child: SizedBox(
-                  //height: 50,
+                  height: 50,
                   width: 200,
                   child: billAmountConvertedProcess(),
                 ),
@@ -170,6 +170,7 @@ class _BillProcessState extends State<BillProcess> {
             if (billCurrencyConverted == 'KHR') {
               billCurrencyFlagConverted = '🇰🇭';
             } // TODO - use digit grouping for large numbers
+            // TODO - on reset, clear the billAmountConverted display
           }
         });
       },
