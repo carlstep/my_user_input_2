@@ -207,6 +207,11 @@ class _BillProcessState extends State<BillProcess> {
           ),
         ),
         suffixText: billCurrencyFlag,
+        suffixStyle: GoogleFonts.poppins(
+          fontSize: 28,
+          fontWeight: FontWeight.w400,
+          letterSpacing: 1.1,
+        ),
       ),
     );
   }
