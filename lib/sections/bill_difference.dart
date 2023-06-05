@@ -33,7 +33,7 @@ class _BillDiffState extends State<BillDiff> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 1, color: Colors.black),
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
                   ),
@@ -45,7 +45,7 @@ class _BillDiffState extends State<BillDiff> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 1, color: Colors.black),
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
                   ),

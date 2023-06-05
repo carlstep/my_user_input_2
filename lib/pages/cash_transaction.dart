@@ -19,12 +19,12 @@ class CashTransaction extends StatelessWidget {
             'Cash Transaction',
           ),
         ),
-        body: Center(
+        body: const Center(
           child: SingleChildScrollView(
-            padding: const EdgeInsets.all(20.0),
+            padding: EdgeInsets.all(20.0),
             child: Column(
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
+              children: [
                 BillProcess(), // handles the bill amount from user
                 SizedBox(
                   height: 20,

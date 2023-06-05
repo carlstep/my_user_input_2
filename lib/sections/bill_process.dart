@@ -74,8 +74,7 @@ class _BillProcessState extends State<BillProcess> {
               top: 0,
               child: OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(40, 40),
-                  primary: Colors.red,
+                  foregroundColor: Colors.red, minimumSize: const Size(40, 40),
                   //onPrimary: Colors.white,
                   padding: const EdgeInsets.all(2),
                   side: BorderSide.none,

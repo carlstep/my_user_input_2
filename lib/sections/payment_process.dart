@@ -33,7 +33,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 1, color: Colors.black),
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
                   ),
@@ -45,7 +45,7 @@ class _PaymentProcessState extends State<PaymentProcess> {
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 1, color: Colors.black),
-                    borderRadius: BorderRadius.all(
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     ),
                   ),
@@ -55,8 +55,8 @@ class _PaymentProcessState extends State<PaymentProcess> {
             const SizedBox(
               height: 20,
             ),
-            Column(
-              children: const [
+            const Column(
+              children: [
                 Text('slider 1'),
                 SizedBox(
                   height: 20,
